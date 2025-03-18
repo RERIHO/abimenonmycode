@@ -1,0 +1,90 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using CriWare;
+
+
+public class UI_Bar : MonoBehaviour
+{
+    [SerializeField]
+    CriWare.Assets.CriAtomCueReference cueReference;
+    [SerializeField]
+    private Slider SoundBar;
+
+    [SerializeField]
+    private string bgmCategoryName = "BGM";
+    [SerializeField]
+    private string seCategoryName = "SE";
+
+
+    private bool isMousePress = false;
+    private bool isValueChanged = false;
+
+    // 初回ロード時にカテゴリのボリューム値を取得するメソッド
+    private void Awake()
+    {
+        SoundBar.value = CriAtomExCategory.GetVolume(bgmCategoryName);
+        // 必要に応じて別のスライダーでSEの音量も設定
+        // もし一つのスライダーで両方の音量を制御するなら、この一行だけでOKです
+        // SoundBar.value = CriAtomExCategory.GetVolume(seCategoryName);
+    }
+
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+        //ボタンにクリックしたら音が鳴るように設定したPlaySoundの中身は下に書いた
+        //このスクリプトを付けたButtonコンポーネントの取得
+
+        var slider = GetComponent<Slider>();
+        //≠nullの時ボタンを押すと鳴るようにした
+        //ボタンを押したときにPlaySoundを呼び出すように登録
+        if (slider != null)
+        {
+            slider.onValueChanged.AddListener(ChangeVolume);
+        }
+
+        //音量初期値をサウンドバーのボリュームと連動
+        float val = SoundBar.value;
+        //バーの初期値を1に変更
+        SoundBar.value = 1.0f;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isMousePress == false && Input.GetMouseButtonDown(0))
+        {
+            //マウスのボタンが押されたタイミングで呼び出される。
+            isMousePress = true;
+        }
+        else if (isMousePress && Input.GetMouseButtonUp(0))
+        {
+            isMousePress = false;
+            //このタイミングでマウスのボタンが離される。
+            if (isValueChanged)
+            {
+                ADXSoundManager.Instance.PlaySound("UIBAR", cueReference.AcbAsset.Handle, cueReference.CueId, this.gameObject.transform, true);
+                isValueChanged = false;
+            }
+        }
+    }
+
+
+    void ChangeVolume(float val)
+    {
+        SoundBar.onValueChanged.AddListener((val) => { CriAtom.SetCategoryVolume(bgmCategoryName, val); });
+        SoundBar.onValueChanged.AddListener((val) => { CriAtom.SetCategoryVolume(seCategoryName, val); });
+        isValueChanged = true;
+    }
+
+
+    void SetVolume(string ChangeVolume, float val)
+    {
+        isValueChanged = true;
+    }
+}
