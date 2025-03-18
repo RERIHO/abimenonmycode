@@ -7,3 +7,14 @@
 サウンド制作<p>
 設定画面(音量バー)<p>
 CRIADX関連のコード<p>
+<p>
+###詳細
+CRIADX関連ファイル<p>
+  GenerateSoundManager/MySoundListener/MySoundSource<p>
+<p>
+設定画面音量変更スクリプト<p>
+  UI_Bar<p>
+<p>
+音を鳴らすためのスクリプト<p>
+  UI_Enter
+</p>
