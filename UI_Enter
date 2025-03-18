@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UI : MonoBehaviour
+{
+    [SerializeField]
+    CriWare.Assets.CriAtomCueReference cueReference;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+        //ボタンにクリックしたら音が鳴るように設定したPlaySoundの中身は下に書いた
+        //このスクリプトを付けたButtonコンポーネントの取得
+
+        var button = GetComponent<Button>();
+        //≠nullの時ボタンを押すと鳴るようにした
+        //ボタンを押したときにPlaySoundを呼び出すように登録
+        if (button != null)
+        {
+            button.onClick.AddListener(PlaySound);
+            ADXSoundManager.Instance.StopSound("tutorial_out");
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+    void PlaySound()
+    {
+        ADXSoundManager.Instance.PlaySound("MySound", cueReference.AcbAsset.Handle, cueReference.CueId, this.gameObject.transform, true);
+        
+    }
+}
