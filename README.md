@@ -1,5 +1,5 @@
 # abimenon_mycode
-大学2年秋～3年時にTGS出展のため制作した「octrans」にて、サウンドを担当していました。
+大学2年秋～3年時にTGS出展のため制作した「octrans」にて、サウンドを担当していました。<p>
 その際に一部コードを書いたので、こちらに載せておきます（チーム制作物がプライベートで制作が行われているため）
 <p>ゲームダウンロード⇒http://mkmlab.net/TGS/2024/game/octrans.html
 
@@ -9,12 +9,12 @@
 CRIADX関連のコード<p>
 
 ### 詳細
-CRIADX関連ファイル<p>
-  GenerateSoundManager/MySoundListener/MySoundSource<p>
+- CRIADX関連ファイル<p>
+  - GenerateSoundManager/MySoundListener/MySoundSource<p>
 <p>
-設定画面音量変更スクリプト<p>
-  UI_Bar<p>
+- 設定画面音量変更スクリプト<p>
+    - UI_Bar<p>
 <p>
-音を鳴らすためのスクリプト<p>
-  UI_Enter
+- 音を鳴らすためのスクリプト<p>
+    - UI_Enter
 </p>
