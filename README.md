@@ -4,6 +4,6 @@
 <p>ゲームダウンロード⇒http://mkmlab.net/TGS/2024/game/octrans.html
 
 ### 担当箇所
-サウンド制作
-設定画面(音量バー)
-CRIADX関連のコード
+サウンド制作<p>
+設定画面(音量バー)<p>
+CRIADX関連のコード<p>
